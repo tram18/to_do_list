@@ -7,6 +7,20 @@
     <packaging>war</packaging>
     <version>1.0</version>
     <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId> <!--Provides the core Java EE APIs-->
+            <version>8.0</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
