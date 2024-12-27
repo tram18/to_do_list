@@ -1,0 +1,56 @@
+package repository;
+
+import entity.TaskList;
+import entity.User;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
+@Stateless
+public class TaskListRepository {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public List<TaskList> getAllTaskList() {
+        return entityManager.createNamedQuery("task_lists.listAllTaskList", TaskList.class).getResultList();
+    }
+
+    public TaskList findTaskListById(int id) {
+        return entityManager.find(TaskList.class, id);
+    }
+
+    public void addTask(TaskList taskList, int userId) {
+        User user = entityManager.find(User.class, userId);
+        if (user == null) {
+            throw new IllegalArgumentException("User with ID " + userId + " not found.");
+        }
+        taskList.setUser(user);
+        entityManager.persist(taskList);
+    }
+
+    public void updateTaskList(TaskList taskList, int userId) {
+        User user = entityManager.find(User.class, userId);
+        if (user == null) {
+            throw new IllegalArgumentException("User with ID " + userId + " not found.");
+        }
+        taskList.setUser(user);
+        entityManager.merge(taskList);
+    }
+
+    public void deleteTaskList(int id) {
+        TaskList taskList = entityManager.find(TaskList.class, id);
+        if (taskList != null) {
+            entityManager.remove(taskList);
+        }
+    }
+
+    public List<TaskList> findAllTaskListsByUserId(int userId) {
+        return entityManager.createNamedQuery("task_lists.findByUser", TaskList.class)
+                .setParameter("userId", userId)
+                .getResultList();
+    }
+
+}
