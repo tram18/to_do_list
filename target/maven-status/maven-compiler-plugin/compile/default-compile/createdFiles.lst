@@ -1,1 +1,14 @@
+service\ItemImpl.class
+service\UserImpl.class
+repository\TaskListRepository.class
+dto\UserDTO.class
+service\UserService.class
+service\ItemService.class
+entity\TaskItem.class
+entity\User.class
 controller\TodoServlet.class
+repository\ItemRepository.class
+service\TaskListServiceImpl.class
+service\TaskListService.class
+repository\UserRepository.class
+entity\TaskList.class

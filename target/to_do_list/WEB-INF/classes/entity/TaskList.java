@@ -1,25 +1,25 @@
 package entity;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "users.listAllUsers", query = "SELECT e FROM User e"),
-        @NamedQuery(name = "users.findUserById", query = "SELECT e FROM User e WHERE e.id = :id"),
-        @NamedQuery(name = "users.deleteUserById", query = "DELETE FROM User e WHERE e.id = :id"),
+        @NamedQuery(name = "task_lists.listAllTaskList", query = "SELECT t FROM TaskList t"),
+        @NamedQuery(name = "task_lists.deleteTaskListById", query = "DELETE FROM TaskList t WHERE t.id = :id"),
+        @NamedQuery(name = "task_lists.findByUser", query = "SELECT t FROM TaskList t WHERE t.user.id = :userId")
+
 })
-@Table(name = "users")
-public class User implements Serializable {
+@Table(name = "task_lists")
+public class TaskList {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 50)
-    private String userName;
+    @Column(name = "list_name", nullable = false, length = 100)
+    private String listName;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Timestamp createdAt;
@@ -27,21 +27,32 @@ public class User implements Serializable {
     @Column(name = "updated_at", nullable = false, updatable = false)
     private Timestamp updatedAt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    // if the child is orphaned. it should also be removed from the database
-    private List<TaskList> taskLists;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "taskList", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<TaskItem> taskItems;
 
     // Getters and Setters
     public Integer getId() {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.userName = username;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getListName() {
+        return listName;
+    }
+
+    public void setListName(String listName) {
+        this.listName = listName;
     }
 
     public Timestamp getCreatedAt() {
@@ -52,12 +63,12 @@ public class User implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public List<TaskList> getTaskLists() {
-        return taskLists;
+    public List<TaskItem> getTaskItems() {
+        return taskItems;
     }
 
-    public void setTaskLists(List<TaskList> taskLists) {
-        this.taskLists = taskLists;
+    public void setTaskItems(List<TaskItem> taskItems) {
+        this.taskItems = taskItems;
     }
 
     public Timestamp getUpdatedAt() {
@@ -80,9 +91,10 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "TaskList{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", user=" + user +
+                ", listName='" + listName + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
     }
