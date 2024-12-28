@@ -18,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "TodoServlet", urlPatterns = "")
 public class TodoServlet extends HttpServlet {
     private static final long serialVersionUID = -8841769146082323925L;
+    private static final int userId = 2;
 
     @EJB
     private TaskListService taskListService;
@@ -32,22 +33,37 @@ public class TodoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("-------------------DoGet");
-        showTaskList(req);
+        showTaskList(req); // why 3 times appear if sth went wrong?
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        addList(req);
-        addItem(req);
+        String action = req.getParameter("action");
+
+        try {
+            if ("addList".equals(action)) {
+                addList(req);
+            } else if ("addItem".equals(action)) {
+                addItem(req);
+            } else if ("addCompletedItem".equals(action)) {
+                addCompletedItem(req);
+            } else {
+                throw new IllegalArgumentException("Unknown action: " + action);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("errorMessage", "An error occurred while processing your request.");
+        }
+
+
         resp.sendRedirect(req.getContextPath() + "/");
-//        req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
     public void showTaskList(HttpServletRequest req) {
         List<TaskList> taskLists = new ArrayList<>();
-        taskLists = taskListService.findAllTaskListsByUserId(2);
+        taskLists = taskListService.findAllTaskListsByUserId(userId);
         req.setAttribute("taskLists", taskLists);
 
     }
@@ -55,7 +71,7 @@ public class TodoServlet extends HttpServlet {
     public void addList(HttpServletRequest req) {
         String listName = req.getParameter("listName");
         try {
-            taskListService.addTaskList(listName, 2);
+            taskListService.addTaskList(listName, userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,6 +86,14 @@ public class TodoServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void addCompletedItem(HttpServletRequest req) {
+        int taskId = Integer.parseInt(req.getParameter("taskId"));
+        String completed = req.getParameter("completed");
+        boolean taskCompleted = "true".equals(completed);
+
+        itemService.updateTaskCompletion(taskId, taskCompleted);
     }
 
 

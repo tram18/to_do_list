@@ -24,4 +24,9 @@ public class ItemImpl implements ItemService {
         newItem.setTaskName(items);
         itemRepository.addItems(taskListId, newItem);
     }
+
+    @Override
+    public void updateTaskCompletion(int itemId, boolean isCompleted) {
+        itemRepository.updateTaskCompletion(itemId, isCompleted);
+    }
 }

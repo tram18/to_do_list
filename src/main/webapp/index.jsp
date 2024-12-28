@@ -18,6 +18,7 @@
            <!-- Add New Task List Form -->
            <div class="form-container">
                <form action="" method="post">
+                   <input type="hidden" name="action" value="addList" />
                    <input type="text" name="listName" placeholder="Add a new list..." required>
                    <button type="submit">Add List</button>
                </form>
@@ -31,7 +32,16 @@
 
                        <c:forEach items="${taskList.taskItems}" var="item">
                            <div class="task-item">
-                               <span class="task-item-text">${item.taskName}</span>
+
+                           <!-- Check box for items completed-->
+                           <form action="" method=post class="task-form">
+                           <input type="hidden" name="action" value="addCompletedItem" />
+                           <input type="hidden" name="taskId" value="${item.id}" />
+                           <input type="checkbox" name="completed" value="true"
+                                                          ${item.completed ? 'checked' : ''}
+                                                          onchange="this.form.submit();" />
+                               <span class="task-item-text ${item.completed ? 'completed' : ''}">${item.taskName}</span>
+                           </form>
                            </div>
                        </c:forEach>
                    </div>
@@ -41,6 +51,7 @@
            <!-- Add New Task Item Form -->
            <div class="form-container">
                <form action="" method="post">
+                   <input type="hidden" name="action" value="addItem" />
                    <select name="taskListId" required>
                        <option value="" disabled selected>Select a list</option>
                        <c:forEach items="${taskLists}" var="taskList">
