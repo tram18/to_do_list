@@ -1,0 +1,77 @@
+[33mcommit 183cc9a89fbcf72df84e645172e1ada00ee9cccd[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: ffd2e35 a6f8e34
+Author: Tram Le <61442104+tram18@users.noreply.github.com>
+Date:   Fri Dec 27 21:44:13 2024 -0800
+
+    Merge pull request #4 from tram18/making-complete-task-item
+    
+    adding completed items feature
+
+[33mcommit a6f8e346c7da909601ac94f6bca463f0f585cea0[m[33m ([m[1;31morigin/making-complete-task-item[m[33m, [m[1;32mmaking-complete-task-item[m[33m)[m
+Author: Tram <lnqtram94@gmail.com>
+Date:   Fri Dec 27 16:50:44 2024 -0800
+
+    adding completed items feature
+
+[33mcommit ffd2e35c18f6bf84bfc550cdb568f13473fa3f58[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Merge: e8b44ba 88c8278
+Author: Tram Le <61442104+tram18@users.noreply.github.com>
+Date:   Thu Dec 26 21:47:20 2024 -0800
+
+    Merge pull request #3 from tram18/creating-entity-classes
+    
+    adding list and item
+
+[33mcommit 88c8278d444b7a6c1a79de8f8a531dd1eabf15c8[m[33m ([m[1;31morigin/creating-entity-classes[m[33m, [m[1;32mcreating-entity-classes[m[33m)[m
+Author: Tram <lnqtram94@gmail.com>
+Date:   Thu Dec 26 20:05:15 2024 -0800
+
+    add target to git ignore
+
+[33mcommit 6e70293b76095ed4a0fb244226323d6a5de5f3ca[m
+Author: Tram <lnqtram94@gmail.com>
+Date:   Thu Dec 26 16:55:30 2024 -0800
+
+    adding list and item
+
+[33mcommit e8b44bab853f91dfd90d05cb446b1802e710a3ed[m
+Merge: 4b0e01b 4ff568a
+Author: Tram Le <61442104+tram18@users.noreply.github.com>
+Date:   Mon Dec 16 15:07:24 2024 -0800
+
+    Merge pull request #2 from tram18/adding_schemas
+    
+    adding schemas
+
+[33mcommit 4b0e01b1ad86e7216202f5af75d2192528a9b1c5[m[33m ([m[1;31morigin/setup-Maven-to-do-list-app[m[33m, [m[1;32msetup-Maven-to-do-list-app[m[33m)[m
+Merge: e629177 f25e43c
+Author: Tram Le <61442104+tram18@users.noreply.github.com>
+Date:   Mon Dec 16 14:58:38 2024 -0800
+
+    Merge pull request #1 from tram18/setup-Maven-to-do-list-app
+    
+    Setup maven to do list app
+
+[33mcommit 4ff568af32a3c7b9aff2644898c428278a34de0b[m[33m ([m[1;31morigin/adding_schemas[m[33m, [m[1;32madding_schemas[m[33m)[m
+Author: Tram <lnqtram94@gmail.com>
+Date:   Mon Dec 16 14:57:09 2024 -0800
+
+    adding schemas
+
+[33mcommit f25e43cb0da632d58ef6dfd20ceee4129ffe4963[m
+Author: Tram <lnqtram94@gmail.com>
+Date:   Sun Dec 15 21:49:35 2024 -0800
+
+    the base of the app
+
+[33mcommit a6a1487cf6bbfd7b38647306b79c16778d49e077[m
+Author: Tram <lnqtram94@gmail.com>
+Date:   Sun Dec 15 15:16:45 2024 -0800
+
+    initial todo list commit
+
+[33mcommit e629177509ca4b6e493f83acf0d560a76a144f0f[m
+Author: Tram Le <61442104+tram18@users.noreply.github.com>
+Date:   Sun Dec 15 10:53:07 2024 -0800
+
+    Initial commit

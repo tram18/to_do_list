@@ -32,7 +32,7 @@ public class TodoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("-------------------DoGet");
+        System.out.println("-------------------------------------------------------------------DoGet");
         showTaskList(req); // why 3 times appear if sth went wrong?
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -40,6 +40,7 @@ public class TodoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("-------------------------------------------------------------------do post");
         String action = req.getParameter("action");
 
         try {
@@ -49,6 +50,8 @@ public class TodoServlet extends HttpServlet {
                 addItem(req);
             } else if ("addCompletedItem".equals(action)) {
                 addCompletedItem(req);
+            } else if ("deleteItem".equals(action)) {
+                deleteItem(req);
             } else {
                 throw new IllegalArgumentException("Unknown action: " + action);
             }
@@ -56,7 +59,6 @@ public class TodoServlet extends HttpServlet {
             e.printStackTrace();
             req.setAttribute("errorMessage", "An error occurred while processing your request.");
         }
-
 
         resp.sendRedirect(req.getContextPath() + "/");
     }
@@ -95,6 +97,19 @@ public class TodoServlet extends HttpServlet {
 
         itemService.updateTaskCompletion(taskId, taskCompleted);
     }
+
+    public void deleteItem(HttpServletRequest req) {
+        String item = req.getParameter("itemId");
+        int itemId = Integer.parseInt((req.getParameter("itemId")));
+        try {
+            itemService.deleteItem(itemId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
 }

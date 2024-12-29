@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "task_items.listAllTaskItem", query = "SELECT e FROM TaskItem e"),
+        @NamedQuery(name = "task_items.deleteItemById", query = "DELETE FROM TaskItem t WHERE t.id = :id")
 })
 @Table(name = "task_items")
 public class TaskItem {
