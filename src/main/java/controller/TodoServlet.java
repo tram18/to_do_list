@@ -101,7 +101,6 @@ public class TodoServlet extends HttpServlet {
     }
 
     public void deleteItem(HttpServletRequest req) {
-//        String item = req.getParameter("itemId");
         int itemId = Integer.parseInt((req.getParameter("itemId")));
         try {
             itemService.deleteItem(itemId);
@@ -111,7 +110,6 @@ public class TodoServlet extends HttpServlet {
     }
 
     public void deleteList(HttpServletRequest req) {
-//        String list = req.getParameter("listId");
         int listId = Integer.parseInt((req.getParameter("listId")));
         try {
             taskListService.deleteList(listId);
