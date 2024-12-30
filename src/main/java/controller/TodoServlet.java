@@ -52,6 +52,8 @@ public class TodoServlet extends HttpServlet {
                 addCompletedItem(req);
             } else if ("deleteItem".equals(action)) {
                 deleteItem(req);
+            } else if ("deleteList".equals(action)) {
+                deleteList(req);
             } else {
                 throw new IllegalArgumentException("Unknown action: " + action);
             }
@@ -99,10 +101,18 @@ public class TodoServlet extends HttpServlet {
     }
 
     public void deleteItem(HttpServletRequest req) {
-        String item = req.getParameter("itemId");
         int itemId = Integer.parseInt((req.getParameter("itemId")));
         try {
             itemService.deleteItem(itemId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteList(HttpServletRequest req) {
+        int listId = Integer.parseInt((req.getParameter("listId")));
+        try {
+            taskListService.deleteList(listId);
         } catch (Exception e) {
             e.printStackTrace();
         }

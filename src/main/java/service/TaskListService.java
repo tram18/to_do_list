@@ -12,6 +12,5 @@ public interface TaskListService {
     void updateTaskList(String taskName, int userId);
     void deteleTaskList(int id);
     List<TaskList> findAllTaskListsByUserId(int userId);
-
-
+    void deleteList(int listId);
 }

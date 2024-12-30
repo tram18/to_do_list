@@ -45,5 +45,10 @@ public class TaskListServiceImpl implements TaskListService {
         return taskListRepository.findAllTaskListsByUserId(userId);
     }
 
+    @Override
+    public void deleteList(int listId) {
+        taskListRepository.deleteTaskList(listId);
+    }
+
 
 }
