@@ -36,5 +36,11 @@ public class ItemRepository {
         }
     }
 
+    public void deleteItem(int itemId) {
+        entityManager.createNamedQuery("task_items.deleteItemById")
+                .setParameter("id", itemId)
+                .executeUpdate();
+    }
+
 
 }
