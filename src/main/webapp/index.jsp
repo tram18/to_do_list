@@ -30,8 +30,17 @@
     <div class="task-list-container">
       <c:forEach items="${taskLists}" var="taskList">
         <div class="task-list">
+
           <div class="task-list-header">
             <c:out value="${taskList.listName}" />
+              <!------Delete List Name ------->
+            <form action="" method="post" class="delete-form" style="display: inline;">
+                <input type="hidden" name="action" value="deleteList" />
+                <input type="hidden" name="listId" value="${taskList.id}" />
+                <button type="submit" class="delete-button">
+                  &times;
+                </button>
+            </form>
           </div>
 
           <c:forEach items="${taskList.taskItems}" var="item">
@@ -45,7 +54,7 @@
                 <span class="task-item-text ${item.completed ? 'completed' : ''}">${item.taskName}</span>
               </form>
 
-              <!-- Delete button -->
+              <!-- Delete items button -->
               <form action="" method="post" class="delete-form" style="display: inline;">
                 <input type="hidden" name="action" value="deleteItem" />
                 <input type="hidden" name="itemId" value="${item.id}" />
