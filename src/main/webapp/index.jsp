@@ -34,7 +34,7 @@
           <div class="task-list-header">
             <c:out value="${taskList.listName}" />
               <!------Delete List Name ------->
-            <form action="" method="post" class="delete-form" style="display: inline;">
+            <form id="delete-form-${taskList.id}" onsubmit="return confirmDelete(${taskList.id});"  action="" method="post" class="delete-form" style="display: inline;">
                 <input type="hidden" name="action" value="deleteList" />
                 <input type="hidden" name="listId" value="${taskList.id}" />
                 <button type="submit" class="delete-button">
@@ -42,6 +42,7 @@
                 </button>
             </form>
           </div>
+
 
           <c:forEach items="${taskList.taskItems}" var="item">
             <div class="task-item">
@@ -53,6 +54,7 @@
                 <input type="checkbox" name="completed" value="true" ${item.completed ? 'checked' : '' } onchange="this.form.submit();" />
                 <span class="task-item-text ${item.completed ? 'completed' : ''}">${item.taskName}</span>
               </form>
+
 
               <!-- Delete items button -->
               <form action="" method="post" class="delete-form" style="display: inline;">

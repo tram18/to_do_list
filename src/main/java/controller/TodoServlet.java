@@ -1,5 +1,6 @@
 package controller;
 
+import entity.TaskItem;
 import entity.TaskList;
 import service.ItemService;
 import service.TaskListService;
@@ -42,6 +43,8 @@ public class TodoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("-------------------------------------------------------------------do post");
         String action = req.getParameter("action");
+        String userChoice = req.getParameter("userChoice");
+
 
         try {
             if ("addList".equals(action)) {
@@ -110,7 +113,9 @@ public class TodoServlet extends HttpServlet {
     }
 
     public void deleteList(HttpServletRequest req) {
+        System.out.println("---------------- running deleteList");
         int listId = Integer.parseInt((req.getParameter("listId")));
+
         try {
             taskListService.deleteList(listId);
         } catch (Exception e) {
@@ -118,7 +123,12 @@ public class TodoServlet extends HttpServlet {
         }
     }
 
-
+    public boolean hasIncompleteTasks(int listId) {
+        System.out.println("---------------- running hasIncompleteTasks");
+        TaskList taskList = taskListService.findTaskListById(listId);
+        return taskList.getTaskItems().stream()
+                .anyMatch(item -> !item.isCompleted());
+    }
 
 
 }

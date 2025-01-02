@@ -1,11 +1,13 @@
 package repository;
 
+import entity.TaskItem;
 import entity.TaskList;
 import entity.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -52,5 +54,7 @@ public class TaskListRepository {
                 .setParameter("userId", userId)
                 .getResultList();
     }
+
+
 
 }

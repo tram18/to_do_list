@@ -19,8 +19,8 @@ public class TaskListServiceImpl implements TaskListService {
     }
 
     @Override
-    public TaskList getTaskListsByUserId(int id) {
-        return taskListRepository.findTaskListById(id);
+    public TaskList findTaskListById(int listId) {
+        return taskListRepository.findTaskListById(listId);
     }
 
     @Override
@@ -33,11 +33,6 @@ public class TaskListServiceImpl implements TaskListService {
     @Override
     public void updateTaskList(String taskName, int userId) {
     //todo
-    }
-
-    @Override
-    public void deteleTaskList(int id) {
-        taskListRepository.deleteTaskList(id);
     }
 
     @Override
