@@ -1,33 +1,28 @@
-async function getData(taskListId) {
+/*
+user clicks X
+we check the REST API hasIncompleteItems
+if it returns true, then display a confirmation warning
+
+
+*/
+
+async function hasIncompleteItems(taskListId) {
   const url = `http://localhost:8080/to_do_list/api/tasklist/${taskListId}/hasIncompleteTasks`;
   try {
-    const response = await fetch(url);
+    const response = await fetch(url); // Await the fetch call
+    console.log(response);
+
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
 
-    const json = await response.json();
+    const json = await response.json(); // Await the parsing of the JSON
     console.log(json);
 
-    if (json.hasIncompleteTasks) {
-          const confirmDelete = confirm(
-            "This list has incomplete tasks. Are you sure you want to delete it?"
-          );
-
-          if (confirmDelete) {
-            // Proceed with delete
-            deleteTaskList(taskListId);
-          } else {
-            console.log("User canceled the delete operation.");
-          }
-        } else {
-          // Proceed with delete since no incomplete tasks
-          deleteTaskList(taskListId);
-        }
-      } catch (error) {
-        console.error("Error checking incomplete tasks:", error.message);
-      }
-
+    return json.hasIncompleteTasks; // Return the desired property
+  } catch (error) {
+    console.error("Error checking incomplete tasks:", error.message);
+  }
 }
 
 async function deleteTaskList(taskListId) {
@@ -36,11 +31,32 @@ async function deleteTaskList(taskListId) {
   try {
     const response = await fetch(deleteUrl, { method: "DELETE" });
     if (response.ok) {
-      alert("Task list deleted successfully.");
+      console.log("Task list deleted successfully.");
     } else {
-      alert(`Failed to delete task list: ${response.statusText}`);
+      console.log(`Failed to delete task list: ${response.statusText}`);
     }
   } catch (error) {
     console.error("Error deleting task list:", error.message);
   }
+}
+
+async function confirmDelete(taskListId) {
+    const isIncomplete = await hasIncompleteItems(taskListId);
+
+    console.log('isIncomplete ' + isIncomplete  );
+
+    if(isIncomplete) {
+        const warningElementId = 'warning-' + taskListId;
+        const warningDiv = document.getElementById(warningElementId);
+        warningDiv.style.visibility = 'visible';
+    } else {
+         deleteTaskList(taskListId);
+         hideTaskListElement(taskListId);
+    }
+
+}
+
+function hideTaskListElement(taskListId) {
+    const d = document.getElementById('task-list-' + taskListId);
+    d.remove();
 }

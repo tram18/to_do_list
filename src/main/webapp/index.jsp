@@ -30,18 +30,27 @@
     <!-- Display Task Lists and Items -->
     <div class="task-list-container">
       <c:forEach items="${taskLists}" var="taskList">
-        <div class="task-list">
+        <div id="task-list-${taskList.id}" class="task-list">
+
+          <div id="warning-${taskList.id}" style="visibility: hidden">
+            The list has incomplete items. Are you sure you want to delete it?
+            <button onclick="doDelete()">Delete</button>
+            <button onclick="cancelDelete()">Cancel</button>
+          </div>
 
           <div class="task-list-header">
             <c:out value="${taskList.listName}" />
               <!------Delete List Name ------->
-            <form id="delete-form-${taskList.id}" onsubmit="return confirmDelete(${taskList.id});"  action="" method="post" class="delete-form" style="display: inline;">
+            <form id="delete-form-${taskList.id}"
+                    class="delete-form" style="display: inline;">
+
                 <input type="hidden" name="action" value="deleteList" />
                 <input type="hidden" name="listId" value="${taskList.id}" />
-                <button type="submit" class="delete-button">
-                  &times;
-                </button>
+
             </form>
+            <button class="delete-button" onclick="confirmDelete(${taskList.id})">
+                &times;
+              </button>
           </div>
 
 
