@@ -8,29 +8,26 @@ async function getData(taskListId) {
 
     const json = await response.json();
     console.log(json);
-  } catch (error) {
-    console.error(error.message);
-  }
 
-  // Check if there are incomplete tasks
-      if (data.hasIncompleteTasks) {
-        const confirmDelete = confirm(
-          "This list has incomplete tasks. Are you sure you want to delete it?"
-        );
+    if (json.hasIncompleteTasks) {
+          const confirmDelete = confirm(
+            "This list has incomplete tasks. Are you sure you want to delete it?"
+          );
 
           if (confirmDelete) {
-                // Proceed with delete
-                deleteTaskList(taskListId);
-              } else {
-                console.log("User canceled the delete operation.");
-              }
-            } else {
-              // Proceed with delete since no incomplete tasks
-              deleteTaskList(taskListId);
-            }
-          } catch (error) {
-            console.error("Error checking incomplete tasks:", error.message);
+            // Proceed with delete
+            deleteTaskList(taskListId);
+          } else {
+            console.log("User canceled the delete operation.");
           }
+        } else {
+          // Proceed with delete since no incomplete tasks
+          deleteTaskList(taskListId);
+        }
+      } catch (error) {
+        console.error("Error checking incomplete tasks:", error.message);
+      }
+
 }
 
 async function deleteTaskList(taskListId) {
