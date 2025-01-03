@@ -1,11 +1,13 @@
 package repository;
 
+import entity.TaskItem;
 import entity.TaskList;
 import entity.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -40,11 +42,13 @@ public class TaskListRepository {
         entityManager.merge(taskList);
     }
 
-    public void deleteTaskList(int id) {
-        TaskList taskList = entityManager.find(TaskList.class, id);
+    public boolean deleteTaskList(int id) {
+        TaskList taskList = findTaskListById(id);
         if (taskList != null) {
-            entityManager.remove(taskList);
+            entityManager.remove(taskList); // Assuming JPA is used
+            return true;
         }
+        return false;
     }
 
     public List<TaskList> findAllTaskListsByUserId(int userId) {
@@ -52,5 +56,7 @@ public class TaskListRepository {
                 .setParameter("userId", userId)
                 .getResultList();
     }
+
+
 
 }

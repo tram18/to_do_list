@@ -10,7 +10,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List</title>
-  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
 </head>
 
 <body>
@@ -29,19 +30,29 @@
     <!-- Display Task Lists and Items -->
     <div class="task-list-container">
       <c:forEach items="${taskLists}" var="taskList">
-        <div class="task-list">
+        <div id="task-list-${taskList.id}" class="task-list">
+
+          <div id="warning-${taskList.id}" class="warning-box" style="visibility: hidden;">
+            The list has incomplete items. Are you sure you want to delete it?
+            <button class="warning-delete-button" onclick="deleteTaskList(${taskList.id})">Delete</button>
+            <button class="warning-cancel-button" onclick="cancelDelete(${taskList.id})">Cancel</button>
+          </div>
 
           <div class="task-list-header">
             <c:out value="${taskList.listName}" />
               <!------Delete List Name ------->
-            <form action="" method="post" class="delete-form" style="display: inline;">
+            <form id="delete-form-${taskList.id}"
+                    class="delete-form" style="display: inline;">
+
                 <input type="hidden" name="action" value="deleteList" />
                 <input type="hidden" name="listId" value="${taskList.id}" />
-                <button type="submit" class="delete-button">
-                  &times;
-                </button>
+
             </form>
+            <button class="delete-button" onclick="confirmDelete(${taskList.id})">
+                &times;
+              </button>
           </div>
+
 
           <c:forEach items="${taskList.taskItems}" var="item">
             <div class="task-item">
@@ -53,6 +64,7 @@
                 <input type="checkbox" name="completed" value="true" ${item.completed ? 'checked' : '' } onchange="this.form.submit();" />
                 <span class="task-item-text ${item.completed ? 'completed' : ''}">${item.taskName}</span>
               </form>
+
 
               <!-- Delete items button -->
               <form action="" method="post" class="delete-form" style="display: inline;">

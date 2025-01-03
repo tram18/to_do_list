@@ -1,5 +1,6 @@
 package controller;
 
+import entity.TaskItem;
 import entity.TaskList;
 import service.ItemService;
 import service.TaskListService;
@@ -29,7 +30,6 @@ public class TodoServlet extends HttpServlet {
     @EJB
     private ItemService itemService;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("-------------------------------------------------------------------DoGet");
@@ -42,6 +42,8 @@ public class TodoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("-------------------------------------------------------------------do post");
         String action = req.getParameter("action");
+        String userChoice = req.getParameter("userChoice");
+
 
         try {
             if ("addList".equals(action)) {
@@ -52,8 +54,6 @@ public class TodoServlet extends HttpServlet {
                 addCompletedItem(req);
             } else if ("deleteItem".equals(action)) {
                 deleteItem(req);
-            } else if ("deleteList".equals(action)) {
-                deleteList(req);
             } else {
                 throw new IllegalArgumentException("Unknown action: " + action);
             }
@@ -108,17 +108,5 @@ public class TodoServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-    public void deleteList(HttpServletRequest req) {
-        int listId = Integer.parseInt((req.getParameter("listId")));
-        try {
-            taskListService.deleteList(listId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
 
 }
