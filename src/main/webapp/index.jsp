@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List</title>
-  <link rel="stylesheet" href="style1.css">
+  <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
 </head>
 
@@ -32,10 +32,10 @@
       <c:forEach items="${taskLists}" var="taskList">
         <div id="task-list-${taskList.id}" class="task-list">
 
-          <div id="warning-${taskList.id}" style="visibility: hidden">
+          <div id="warning-${taskList.id}" class="warning-box" style="visibility: hidden;">
             The list has incomplete items. Are you sure you want to delete it?
-            <button onclick="deleteTaskList(${taskList.id})">Delete</button>
-            <button onclick="cancelDelete(${taskList.id})">Cancel</button>
+            <button class="warning-delete-button" onclick="deleteTaskList(${taskList.id})">Delete</button>
+            <button class="warning-cancel-button" onclick="cancelDelete(${taskList.id})">Cancel</button>
           </div>
 
           <div class="task-list-header">

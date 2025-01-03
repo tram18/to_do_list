@@ -2,8 +2,6 @@
 user clicks X
 we check the REST API hasIncompleteItems
 if it returns true, then display a confirmation warning
-
-
 */
 
 async function hasIncompleteItems(taskListId) {
@@ -53,9 +51,7 @@ async function confirmDelete(taskListId) {
         warningDiv.style.visibility = 'visible';
     } else {
          deleteTaskList(taskListId);
-//         hideTaskListElement(taskListId);
     }
-
 }
 
 function hideTaskListElement(taskListId) {

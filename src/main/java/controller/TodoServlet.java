@@ -30,7 +30,6 @@ public class TodoServlet extends HttpServlet {
     @EJB
     private ItemService itemService;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("-------------------------------------------------------------------DoGet");
