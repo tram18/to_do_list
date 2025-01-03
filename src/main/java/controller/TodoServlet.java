@@ -110,23 +110,4 @@ public class TodoServlet extends HttpServlet {
         }
     }
 
-    public void deleteList(HttpServletRequest req) {
-        System.out.println("---------------- running deleteList");
-        int listId = Integer.parseInt((req.getParameter("listId")));
-
-        try {
-            taskListService.deleteList(listId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean hasIncompleteTasks(int listId) {
-        System.out.println("---------------- running hasIncompleteTasks");
-        TaskList taskList = taskListService.findTaskListById(listId);
-        return taskList.getTaskItems().stream()
-                .anyMatch(item -> !item.isCompleted());
-    }
-
-
 }

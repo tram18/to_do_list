@@ -34,8 +34,8 @@
 
           <div id="warning-${taskList.id}" style="visibility: hidden">
             The list has incomplete items. Are you sure you want to delete it?
-            <button onclick="doDelete()">Delete</button>
-            <button onclick="cancelDelete()">Cancel</button>
+            <button onclick="deleteTaskList(${taskList.id})">Delete</button>
+            <button onclick="cancelDelete(${taskList.id})">Cancel</button>
           </div>
 
           <div class="task-list-header">

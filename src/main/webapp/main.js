@@ -30,6 +30,8 @@ async function deleteTaskList(taskListId) {
 
   try {
     const response = await fetch(deleteUrl, { method: "DELETE" });
+    hideTaskListElement(taskListId); //todo the selected box still appear the list
+
     if (response.ok) {
       console.log("Task list deleted successfully.");
     } else {
@@ -51,7 +53,7 @@ async function confirmDelete(taskListId) {
         warningDiv.style.visibility = 'visible';
     } else {
          deleteTaskList(taskListId);
-         hideTaskListElement(taskListId);
+//         hideTaskListElement(taskListId);
     }
 
 }
@@ -59,4 +61,10 @@ async function confirmDelete(taskListId) {
 function hideTaskListElement(taskListId) {
     const d = document.getElementById('task-list-' + taskListId);
     d.remove();
+}
+
+function cancelDelete(taskListId) {
+    const warningElementId = 'warning-' + taskListId;
+    const warningDiv = document.getElementById(warningElementId);
+    warningDiv.style.visibility = 'hidden';
 }
