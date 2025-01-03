@@ -42,11 +42,13 @@ public class TaskListRepository {
         entityManager.merge(taskList);
     }
 
-    public void deleteTaskList(int id) {
-        TaskList taskList = entityManager.find(TaskList.class, id);
+    public boolean deleteTaskList(int id) {
+        TaskList taskList = findTaskListById(id);
         if (taskList != null) {
-            entityManager.remove(taskList);
+            entityManager.remove(taskList); // Assuming JPA is used
+            return true;
         }
+        return false;
     }
 
     public List<TaskList> findAllTaskListsByUserId(int userId) {

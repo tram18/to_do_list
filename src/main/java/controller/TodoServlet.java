@@ -55,8 +55,6 @@ public class TodoServlet extends HttpServlet {
                 addCompletedItem(req);
             } else if ("deleteItem".equals(action)) {
                 deleteItem(req);
-            } else if ("deleteList".equals(action)) {
-                deleteList(req);
             } else {
                 throw new IllegalArgumentException("Unknown action: " + action);
             }

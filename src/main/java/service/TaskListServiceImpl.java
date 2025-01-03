@@ -41,8 +41,13 @@ public class TaskListServiceImpl implements TaskListService {
     }
 
     @Override
-    public void deleteList(int listId) {
-        taskListRepository.deleteTaskList(listId);
+    public boolean deleteList(int listId) {
+        TaskList taskList = findTaskListById(listId);
+        if (taskList != null) {
+            taskListRepository.deleteTaskList(listId);
+            return true;
+        }
+        return false;
     }
 
 
