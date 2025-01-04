@@ -27,7 +27,7 @@ public class ItemImpl implements ItemService {
 
     @Override
     public void updateTaskCompletion(int itemId, boolean isCompleted) {
-        itemRepository.updateTaskCompletion(itemId, isCompleted);
+        itemRepository.updateItem(itemId, isCompleted);
     }
 
     @Override

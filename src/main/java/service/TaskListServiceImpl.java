@@ -31,8 +31,11 @@ public class TaskListServiceImpl implements TaskListService {
     }
 
     @Override
-    public void updateTaskList(String taskName, int userId) {
-    //todo
+    public void updateTaskList(TaskList taskList) {
+        if(taskList != null) {
+            taskListRepository.updateTaskList(taskList);
+        }
+
     }
 
     @Override
