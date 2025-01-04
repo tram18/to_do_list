@@ -64,3 +64,14 @@ function cancelDelete(taskListId) {
     const warningDiv = document.getElementById(warningElementId);
     warningDiv.style.visibility = 'hidden';
 }
+
+function showListUpdate(taskListId) {
+    const containerId = 'update-form-container-' + taskListId;
+    const formContainer = document.getElementById(containerId);
+    formContainer.style.display = "block";
+}
+
+function hideListUpdate(taskListId) {
+    const formContainer = document.getElementById(`update-form-container-${taskListId}`);
+    formContainer.style.display = "none";
+}

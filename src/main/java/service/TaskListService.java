@@ -9,7 +9,7 @@ public interface TaskListService {
     List<TaskList> getAllTaskList();
     TaskList findTaskListById(int listId);
     void addTaskList(String taskName, int userId);
-    void updateTaskList(String taskName, int userId);
+    void updateTaskList(TaskList taskList);
     List<TaskList> findAllTaskListsByUserId(int userId);
     boolean deleteList(int listId);
 }

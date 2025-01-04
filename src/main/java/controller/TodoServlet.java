@@ -54,6 +54,10 @@ public class TodoServlet extends HttpServlet {
                 addCompletedItem(req);
             } else if ("deleteItem".equals(action)) {
                 deleteItem(req);
+            }else if ("updateList".equals(action)) {
+                int listId = Integer.parseInt(req.getParameter("listId"));
+                String listName = req.getParameter("listName");
+                updateListName(listId, listName, userId);
             } else {
                 throw new IllegalArgumentException("Unknown action: " + action);
             }
@@ -107,6 +111,12 @@ public class TodoServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateListName(int listId, String listName, int userId) {
+        TaskList taskList = taskListService.findTaskListById(listId);
+        taskList.setListName(listName);
+        taskListService.updateTaskList(taskList);
     }
 
 }

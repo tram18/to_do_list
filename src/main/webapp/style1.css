@@ -163,3 +163,82 @@ body {
 .warning-cancel-button:hover {
   background-color: #31b0d5; /* Darker blue on hover */
 }
+
+/*-------Style the update list name---------*/
+.update-list-name:hover {
+    background-color: #a3c092;
+    transform: scale(1.1);
+}
+
+/* Styling the update form container */
+.update-form-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.update-form-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.update-form-container input[type="text"]:focus {
+    border-color: #ff9900;
+    outline: none;
+}
+
+/* Styling the buttons */
+.update-form-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-form-container button[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+}
+
+.update-form-container button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.update-form-container button[type="button"] {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+}
+
+.update-form-container button[type="button"]:hover {
+    background-color: #e53935;
+}
+
+/* Make form container hidden by default */
+.update-form-container {
+    display: none;
+}
+
+.update-list-name {
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    font-size: 18px;
+    cursor: pointer;
+}

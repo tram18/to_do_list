@@ -28,7 +28,7 @@ public class ItemRepository {
 
     }
 
-    public void updateTaskCompletion(int itemId, boolean isCompleted) {
+    public void updateItem(int itemId, boolean isCompleted) {
         TaskItem completedItem = entityManager.find(TaskItem.class, itemId);
         if (completedItem != null) {
             completedItem.setCompleted(isCompleted);
