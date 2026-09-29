@@ -1,244 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+/* Color palette (names help you remember what each one is for)
+   Sage Mint    #e3f1dc  page background (soft green, easy on laptop screens)
+   Pistachio    #c9e8b5  soft green accents / borders
+   Matcha       #6fbf73  "yes" / positive green
+   Forest       #3f6b45  deep green text + headings
+   Mango        #ff9a52  main orange (buttons, title)
+   Apricot      #ffc99b  light orange (borders, hover glow)
+   Burnt Apricot #f27a30 button hover
+   Butter       #fff1c1  warning background
+   Strawberry   #ff7b7b  delete / danger
+   Cocoa        #4a3b32  main text
+   Cream        #fffdf6  card background
+*/
+
+:root {
+  --sage-mint: #e3f1dc;
+  --pistachio: #c9e8b5;
+  --matcha: #6fbf73;
+  --matcha-dark: #58a85d;
+  --forest: #3f6b45;
+  --mango: #ff9a52;
+  --apricot: #ffc99b;
+  --burnt-apricot: #f27a30;
+  --butter: #fff1c1;
+  --strawberry: #ff7b7b;
+  --strawberry-dark: #f05f5f;
+  --cocoa: #4a3b32;
+  --cream: #fffdf6;
+}
+
 /* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Fredoka', 'Trebuchet MS', Arial, sans-serif;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Fredoka', 'Trebuchet MS', Arial, sans-serif;
+  background-color: var(--sage-mint);
+  /* tiny polka dots for a cozy, playful feel */
+  background-image: radial-gradient(var(--pistachio) 3px, transparent 2px);
+  background-size: 26px 26px;
+  color: var(--cocoa);
   margin: 0;
-  padding: 0;
+  padding: 30px 20px;
 }
+
 .container {
   width: 100%;
   max-width: 600px;
   margin: auto;
-  padding: 20px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  padding: 30px;
+  background: var(--cream);
+  border: 3px solid var(--pistachio);
+  box-shadow: 0 8px 0 var(--pistachio), 0 14px 24px rgba(63, 107, 69, 0.15);
+  border-radius: 28px;
 }
+
 .title {
   text-align: center;
-  color: #007bff;
-  margin-bottom: 20px;
+  color: var(--mango);
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 0 var(--apricot);
+  margin-bottom: 25px;
 }
+
+/* Form Containers (Inline layout for top & bottom controls) */
+.form-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.form-container input[type="text"],
+.form-container select {
+  flex: 1;
+  padding: 10px 16px;
+  border: 2px solid var(--pistachio);
+  border-radius: 999px;
+  background-color: #fff;
+  color: var(--cocoa);
+  font-size: 0.98rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-container input[type="text"]:focus,
+.form-container select:focus {
+  border-color: var(--mango);
+  box-shadow: 0 0 0 4px rgba(255, 154, 82, 0.25);
+}
+
+.form-container button {
+  padding: 10px 20px;
+  background-color: var(--mango);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 0 var(--burnt-apricot);
+  transition: background-color 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+
+.form-container button:hover {
+  background-color: var(--burnt-apricot);
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+.form-container button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--burnt-apricot);
+}
+
+/* Task List Sections */
 .task-list-container {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
+
 .task-list-header {
-  font-weight: bold;
-  color: #444;
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 3px dotted var(--pistachio);
 }
+
+/* Task Items */
 .task-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  padding: 10px 10px;
+  margin-bottom: 6px;
+  border-bottom: 2px dashed #eef3e8;
+  border-radius: 14px;
+  transition: background-color 0.2s;
 }
+
+.task-item:hover {
+  background-color: #f4faee;
+}
+
 .task-item:last-child {
   border-bottom: none;
 }
-.task-item-text {
-  color: #555;
-}
-.form-container {
+
+.task-item-left {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+  align-items: center;
+  gap: 10px;
 }
-.form-container input {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-.form-container button {
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+
+/* cute round green checkboxes */
+.task-item-left input[type="checkbox"] {
+  accent-color: var(--matcha);
+  width: 18px;
+  height: 18px;
   cursor: pointer;
 }
-.form-container button:hover {
-  background-color: #0056b3;
+
+.task-item-text {
+  color: var(--cocoa);
+  font-size: 1.02rem;
 }
 
-/* check box items */
 .task-item-text.completed {
   text-decoration: line-through;
-  color: grey;
+  text-decoration-color: var(--mango);
+  text-decoration-thickness: 2px;
+  color: #a39a90;
 }
 
-.delete-button {
-  font-size: 1.2rem;
+/* Buttons & Actions */
+.delete-button,
+.update-list-name {
+  font-size: 1.15rem;
   cursor: pointer;
   border: none;
   background: none;
-  padding: 0 5px;
+  padding: 2px 6px;
+  color: var(--cocoa);
+  transition: color 0.2s, transform 0.2s;
 }
 
 .delete-button:hover {
-  color: #d15656;
-  cursor: pointer;
+  color: var(--strawberry-dark);
+  transform: scale(1.2) rotate(8deg);
 }
 
-/* Warning deleting list */
+/* Warning deleting list / Alerts */
 .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    margin-bottom: 15px;
+  padding: 15px 20px;
+  background-color: var(--strawberry);
+  color: white;
+  border-radius: 18px;
+  box-shadow: 0 4px 0 var(--strawberry-dark);
+  margin-bottom: 15px;
 }
 
 .alert .yes-button {
-    background-color: #4CAF50; /* Green */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-right: 10px;
+  background-color: var(--matcha);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 .alert .no-button {
-    background-color: #f44336; /* Red */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
+  background-color: var(--strawberry-dark);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .alert .yes-button:hover,
 .alert .no-button:hover {
-    opacity: 0.8;
+  opacity: 0.85;
+  transform: translateY(-1px);
 }
 
-  /* Warning delete list */
+/* Warning Box Modal */
 .warning-box {
   position: absolute;
-  background-color: #fff3cd; /* Soft yellow background */
-  color: #856404; /* Dark yellow-brown text */
-  border: 1px solid #ffeeba; /* Light yellow border */
-  border-radius: 8px;
-  padding: 16px;
-  width: 600px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  font-family: Arial, sans-serif;
-  font-size: 18px;
+  background-color: var(--butter);
+  color: #8a5a12;
+  border: 3px solid #ffdf8a;
+  border-radius: 22px;
+  padding: 18px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 6px 0 #ffdf8a, 0px 10px 22px rgba(138, 90, 18, 0.2);
+  font-size: 16px;
   z-index: 1000;
 }
 
-/* Button Styling */
 .warning-delete-button,
 .warning-cancel-button {
   margin-top: 12px;
   margin-right: 8px;
-  padding: 8px 12px;
+  padding: 8px 16px;
   font-size: 14px;
+  font-weight: 600;
   border: none;
-  border-radius: 4px;
+  border-radius: 999px;
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
 }
 
 .warning-delete-button {
-  background-color: #d9534f; /* Red background */
+  background-color: var(--strawberry);
   color: white;
 }
 
 .warning-delete-button:hover {
-  background-color: #c9302c; /* Darker red on hover */
+  background-color: var(--strawberry-dark);
+  transform: translateY(-2px);
 }
 
 .warning-cancel-button {
-  background-color: #5bc0de; /* Blue background */
+  background-color: var(--matcha);
   color: white;
 }
 
 .warning-cancel-button:hover {
-  background-color: #31b0d5; /* Darker blue on hover */
+  background-color: var(--matcha-dark);
+  transform: translateY(-2px);
 }
 
-/*-------Style the update list name---------*/
-.update-list-name:hover {
-    background-color: #a3c092;
-    transform: scale(1.1);
-}
-
-/* Styling the update form container */
+/* Update List Name Modal / Form */
 .update-form-container {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 20px auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: none;
+  background-color: #f4faee;
+  border: 3px dashed var(--pistachio);
+  padding: 22px;
+  border-radius: 24px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 6px 14px rgba(63, 107, 69, 0.12);
+  flex-direction: column;
+  gap: 15px;
 }
 
 .update-form-container input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--pistachio);
+  border-radius: 999px;
+  background-color: #fff;
+  color: var(--cocoa);
+  font-size: 16px;
 }
 
 .update-form-container input[type="text"]:focus {
-    border-color: #ff9900;
-    outline: none;
+  border-color: var(--mango);
+  box-shadow: 0 0 0 4px rgba(255, 154, 82, 0.25);
+  outline: none;
 }
 
-/* Styling the buttons */
 .update-form-container button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px 22px;
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
 }
 
 .update-form-container button[type="submit"] {
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
+  background-color: var(--matcha);
+  color: #fff;
+  border: none;
 }
 
 .update-form-container button[type="submit"]:hover {
-    background-color: #45a049;
+  background-color: var(--matcha-dark);
+  transform: translateY(-2px);
 }
 
 .update-form-container button[type="button"] {
-    background-color: #f44336;
-    color: #fff;
-    border: none;
+  background-color: var(--strawberry);
+  color: #fff;
+  border: none;
 }
 
 .update-form-container button[type="button"]:hover {
-    background-color: #e53935;
+  background-color: var(--strawberry-dark);
+  transform: translateY(-2px);
 }
 
-/* Make form container hidden by default */
-.update-form-container {
-    display: none;
+.update-list-name:hover {
+  color: var(--mango);
+  transform: scale(1.15) rotate(-6deg);
 }
 
-.update-list-name {
-    background: none;
-    border: none;
-    padding: 0;
-    line-height: 1;
-    font-size: 18px;
-    cursor: pointer;
+/* Keyboard focus stays visible */
+button:focus-visible {
+  outline: 3px solid var(--mango);
+  outline-offset: 2px;
 }
+
