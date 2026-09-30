@@ -22,10 +22,10 @@ public class TaskItem {
     @Column(name = "is_completed", nullable = false)
     private boolean isCompleted;
 
-    @Column(name = "updated_at", nullable = false, updatable = false)
+    @Column(name = "updated_at", nullable = false, updatable = true)
     private Timestamp updatedAt;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = true)
     private Timestamp createdAt;
 
     @ManyToOne

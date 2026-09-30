@@ -21,10 +21,10 @@ public class TaskList {
     @Column(name = "list_name", nullable = false, length = 100)
     private String listName;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = true)
     private Timestamp createdAt;
 
-    @Column(name = "updated_at", nullable = false, updatable = false)
+    @Column(name = "updated_at", nullable = false, updatable = true)
     private Timestamp updatedAt;
 
     @ManyToOne

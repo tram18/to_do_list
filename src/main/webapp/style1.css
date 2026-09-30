@@ -138,6 +138,19 @@ body {
   border-bottom: 3px dotted var(--pistachio);
 }
 
+.task-list-title {
+  color: var(--forest);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.task-list-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 /* Task Items */
 .task-item {
   display: flex;
@@ -286,66 +299,67 @@ body {
   transform: translateY(-2px);
 }
 
-/* Update List Name Modal / Form */
+/* Update List Name - inline edit form */
 .update-form-container {
   display: none;
-  background-color: #f4faee;
-  border: 3px dashed var(--pistachio);
-  padding: 22px;
-  border-radius: 24px;
-  max-width: 500px;
-  margin: 20px auto;
-  box-shadow: 0 6px 14px rgba(63, 107, 69, 0.12);
-  flex-direction: column;
-  gap: 15px;
+  padding: 5px 8px;
+  background-color: #fdfefb;
+  border: 1.5px solid var(--pistachio);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(63, 107, 69, 0.10);
+}
+
+.update-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .update-form-container input[type="text"] {
-  width: 100%;
-  padding: 12px 16px;
-  border: 2px solid var(--pistachio);
-  border-radius: 999px;
+  width: 170px;
+  padding: 5px 12px;
+  border: 1.5px solid var(--pistachio);
+  border-radius: 8px;
   background-color: #fff;
   color: var(--cocoa);
-  font-size: 16px;
+  font-size: 0.9rem;
 }
 
 .update-form-container input[type="text"]:focus {
-  border-color: var(--mango);
-  box-shadow: 0 0 0 4px rgba(255, 154, 82, 0.25);
+  border-color: var(--matcha);
+  box-shadow: 0 0 0 3px rgba(111, 191, 115, 0.25);
   outline: none;
 }
 
 .update-form-container button {
-  padding: 10px 22px;
-  margin-top: 5px;
-  font-size: 16px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
   font-weight: 600;
-  border-radius: 999px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  white-space: nowrap;
   transition: background-color 0.2s, transform 0.15s;
 }
 
 .update-form-container button[type="submit"] {
   background-color: var(--matcha);
   color: #fff;
-  border: none;
 }
 
 .update-form-container button[type="submit"]:hover {
   background-color: var(--matcha-dark);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .update-form-container button[type="button"] {
-  background-color: var(--strawberry);
-  color: #fff;
-  border: none;
+  background-color: #efece4;
+  color: var(--cocoa);
 }
 
 .update-form-container button[type="button"]:hover {
-  background-color: var(--strawberry-dark);
-  transform: translateY(-2px);
+  background-color: #e4dfd4;
+  transform: translateY(-1px);
 }
 
 .update-list-name:hover {

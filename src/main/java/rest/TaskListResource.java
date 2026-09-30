@@ -22,7 +22,6 @@ public class TaskListResource {
         return Response.ok("{\"hasIncompleteTasks\": " + hasIncomplete + "}").build();
     }
 
-
     @DELETE
     @Path("/{listId}")
     public Response deleteTaskList(@PathParam("listId") int listId) {

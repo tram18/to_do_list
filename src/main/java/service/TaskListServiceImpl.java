@@ -35,7 +35,6 @@ public class TaskListServiceImpl implements TaskListService {
         if(taskList != null) {
             taskListRepository.updateTaskList(taskList);
         }
-
     }
 
     @Override
@@ -52,6 +51,4 @@ public class TaskListServiceImpl implements TaskListService {
         }
         return false;
     }
-
-
 }

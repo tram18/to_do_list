@@ -68,7 +68,7 @@ function cancelDelete(taskListId) {
 function showListUpdate(taskListId) {
     const containerId = 'update-form-container-' + taskListId;
     const formContainer = document.getElementById(containerId);
-    formContainer.style.display = "block";
+    formContainer.style.display = "flex";
 }
 
 function hideListUpdate(taskListId) {

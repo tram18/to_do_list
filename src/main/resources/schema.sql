@@ -10,6 +10,7 @@ CREATE TABLE task_lists (
     user_id INT NOT NULL,
     list_name VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );
 
@@ -19,5 +20,6 @@ CREATE TABLE task_items (
     task_name VARCHAR(255) NOT NULL,
     is_completed BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (task_list_id) REFERENCES task_lists(id) ON DELETE CASCADE
 );

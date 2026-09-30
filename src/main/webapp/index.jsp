@@ -39,35 +39,32 @@
           </div>
 
           <div class="task-list-header">
-            <c:out value="${taskList.listName}" />
+            <span class="task-list-title"><c:out value="${taskList.listName}" /></span>
 
             <!---------Updating ListName----------->
-           <button id="update-list-name-${taskList.id}" class="update-list-name" onclick="showListUpdate(${taskList.id})">
-             &#10000;</button>
+            <div id="update-form-container-${taskList.id}" class="update-form-container" style="display: none;">
+              <form id="update-form-${taskList.id}" class="update-form" method="POST" action="">
+                <input type="hidden" name="action" value="updateList" />
+                <input type="hidden" name="listId" value="${taskList.id}" />
+                <input type="text" name="listName" placeholder="Rename list..." required />
+                <button type="submit">Update</button>
+                <button type="button" onclick="hideListUpdate(${taskList.id})">Cancel</button>
+              </form>
+            </div>
 
-           <div id="update-form-container-${taskList.id}" class="update-form-container" style="display: none;">
-             <form id="update-form-${taskList.id}" class="update-form" method="POST" action="">
-               <input type="hidden" name="action" value="updateList" />
-               <input type="hidden" name="listId" value="${taskList.id}" />
-               <input type="text" name="listName" placeholder="Enter new list name" required />
-               <button type="submit">Update</button>
-               <button type="button" onclick="hideListUpdate(${taskList.id})">Cancel</button>
-             </form>
-           </div>
-
-
+            <div class="task-list-actions">
+              <button id="update-list-name-${taskList.id}" class="update-list-name" onclick="showListUpdate(${taskList.id})">
+                &#10000;</button>
 
               <!------Delete List Name ------->
-            <form id="delete-form-${taskList.id}"
-                    class="delete-form" style="display: inline;">
-
+              <form id="delete-form-${taskList.id}" class="delete-form" style="display: inline;">
                 <input type="hidden" name="action" value="deleteList" />
                 <input type="hidden" name="listId" value="${taskList.id}" />
-
-            </form>
-            <button class="delete-button" onclick="confirmDelete(${taskList.id})">
+              </form>
+              <button class="delete-button" onclick="confirmDelete(${taskList.id})">
                 &times;
               </button>
+            </div>
 
           </div>
 

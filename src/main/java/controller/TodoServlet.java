@@ -33,7 +33,7 @@ public class TodoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("-------------------------------------------------------------------DoGet");
-        showTaskList(req); // why 3 times appear if sth went wrong?
+        showTaskList(req);
 
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
@@ -43,7 +43,6 @@ public class TodoServlet extends HttpServlet {
         System.out.println("-------------------------------------------------------------------do post");
         String action = req.getParameter("action");
         String userChoice = req.getParameter("userChoice");
-
 
         try {
             if ("addList".equals(action)) {
@@ -73,7 +72,6 @@ public class TodoServlet extends HttpServlet {
         List<TaskList> taskLists = new ArrayList<>();
         taskLists = taskListService.findAllTaskListsByUserId(userId);
         req.setAttribute("taskLists", taskLists);
-
     }
 
     public void addList(HttpServletRequest req) {
